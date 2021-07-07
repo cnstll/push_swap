@@ -6,7 +6,7 @@
 
 int	print_and_return_error(void);
 int check_arguments_requirement(int list_length, char **list);
-int	check_if_arguments_are_numbers(int list_length, char **list);
+int	check_if_argument_is_number(char *argument);
 int	is_digit(char character);
 
 #endif
