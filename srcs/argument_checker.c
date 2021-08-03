@@ -1,51 +1,71 @@
 #include "../includes/push_swap.h"
 
-int	print_and_return_error(void)
+static int	is_sign(char c)
 {
-	write(1, "Error\n", 6);
-	return (1);
+	return (c == '-' ||  c == '+');
 }
 
-int	check_if_arg_is_number(char *argument)
+static int	pre_check_one_arg(char *arg)
 {
 	int	i;
 
 	i = 0;
-	while (argument[i])
+	if (!arg[i])
+		return (1);
+	while (arg[i])
 	{
-		if (argument[i] == '-')
-		{
-			if (i != 0)
-				return (1);
-		}
-		else if ((is_digit(argument[i])) == 0)
+		if (!is_spaces(arg[i]) && !is_digit(arg[i]) && !is_sign(arg[i]) )
 			return (1);
+		if (is_sign(arg[i]))
+			if (!arg[i + 1] || !is_digit(arg[i + 1]))
+				return (1);
+		if (is_digit(arg[i]))
+			if (arg[i + 1] && is_sign(arg[i + 1]))
+				return (1);
 		i++;
 	}
 	return (0);
 }
 
-int check_if_arg_in_int_range(char *argument)
+static int	pre_check_multiple_arg(char *arg)
 {
-	int		i;
-	unsigned int	number;
+	int	i;
 
 	i = 0;
-	number = 0;
-	
+	while (arg[i])
+	{
+		if (!arg[i] && !is_sign(arg[i]) && !is_digit(arg[i]))
+			return (1);
+		if (is_sign(arg[i]))
+			if (!arg[i + 1] || !is_digit(arg[i + 1]))
+				return (1);
+		if (is_digit(arg[i]))
+			if (arg[i + 1] && !is_digit(arg[i + 1]))
+				return (1);
+		i++;
+	}
+	return (0);
 }
 
-int check_arguments_requirement(int list_length, char **list)
+int check_arguments_requirements(int nb_of_arg, char **arg)
 {
-	int	reverse_index;
+	int	i;
+	int error;
 
-	reverse_index = list_length;
-	while (--reverse_index > 0) 
+	i = nb_of_arg;
+	if (nb_of_arg == 2)
+		return (pre_check_one_arg(arg[1]));
+	else if (nb_of_arg > 2)
 	{
-		if (check_if_argument_is_number(list[reverse_index]) == 1)
-			return (1);
-		if (check_if_arg_in_int_range
-	//Check if number is not int_max or int_min
-	//Check if number does not appear twice
+		while (--i > 0)
+		{
+			if (pre_check_multiple_arg(arg[i]))
+				return (1);
+			error = 0;
+			ft_atol(arg[i], &error);
+			if (error < 0)
+				return (1);
+		}
+	}
 	return (0);
 }

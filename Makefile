@@ -2,11 +2,18 @@ NAME = push_swap
 
 SRCS = srcs/push_swap.c \
 	   srcs/argument_checker.c \
-	   srcs/utils.c
+	   srcs/utils_1.c \
+	   srcs/utils_2.c \
+	   srcs/utils_3.c \
+       srcs/big_stack_pre_sorting.c \
+       srcs/big_stack_radix_sort.c \
+       srcs/little_stack_sorting.c \
+       srcs/stack_operations_1.c \
+       srcs/stack_operations_2.c
 
 OBJS = $(SRCS:.c=.o)
 
-CC = clang
+CC = clang-9
 
 CFLAGS = -Wall -Wextra -Werror
 
