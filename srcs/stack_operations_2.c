@@ -13,7 +13,7 @@ void	reverse_rotate(t_stack *stack, char stack_name)
 		i--;
 	}
 	stack->stack[i] = tmp;
-	if (stack_name != 0)
+	if (stack_name)
 	{
 		write(1, "rr", 2);
 		write(1, &stack_name, 1);

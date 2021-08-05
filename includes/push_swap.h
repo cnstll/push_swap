@@ -13,6 +13,7 @@ typedef struct	s_stack
 	int	*stack;
 	int	size;
 	int	top;
+	int	current_size;
 	int	is_empty;
 }				t_stack;
 

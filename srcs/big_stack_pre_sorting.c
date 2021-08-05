@@ -58,10 +58,7 @@ static void	remove_negative_num(int *ordered_arr, int *src_arr, int arr_size)
 		while (j < arr_size)
 		{
 			if (src_arr[i] == ordered_arr[j])
-			{
 				src_arr[i] = j;
-				j = 7;
-			}
 			j++;
 		}
 		i++;
@@ -75,6 +72,7 @@ void	pre_sort_stack(t_stack *stack_a, int list_size)
 	copy.stack = ft_calloc(list_size, sizeof(int));
 	copy.size = list_size;
 	copy.top = 0;
+	copy.current_size = copy.size - copy.top;
 	copy.is_empty = 0;
 	copy_array(stack_a->stack, copy.stack, stack_a->size);
 	quick_sort(copy.stack, 0, copy.size - 1);

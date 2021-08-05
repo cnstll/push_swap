@@ -14,7 +14,7 @@ static int	pre_check_one_arg(char *arg)
 		return (1);
 	while (arg[i])
 	{
-		if (!is_spaces(arg[i]) && !is_digit(arg[i]) && !is_sign(arg[i]) )
+		if (!is_spaces(arg[i]) && !is_digit(arg[i]) && !is_sign(arg[i]))
 			return (1);
 		if (is_sign(arg[i]))
 			if (!arg[i + 1] || !is_digit(arg[i + 1]))
@@ -34,7 +34,7 @@ static int	pre_check_multiple_arg(char *arg)
 	i = 0;
 	while (arg[i])
 	{
-		if (!arg[i] && !is_sign(arg[i]) && !is_digit(arg[i]))
+		if (!arg[i] || (!is_sign(arg[i]) && !is_digit(arg[i])))
 			return (1);
 		if (is_sign(arg[i]))
 			if (!arg[i + 1] || !is_digit(arg[i + 1]))
