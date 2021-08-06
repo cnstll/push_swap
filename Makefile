@@ -5,6 +5,7 @@ SRCS = srcs/push_swap.c \
 	   srcs/utils_1.c \
 	   srcs/utils_2.c \
 	   srcs/utils_3.c \
+	   srcs/utils_4.c \
        srcs/big_stack_pre_sorting.c \
        srcs/big_stack_radix_sort.c \
        srcs/little_stack_sorting.c \

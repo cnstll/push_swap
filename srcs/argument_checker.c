@@ -2,7 +2,7 @@
 
 static int	is_sign(char c)
 {
-	return (c == '-' ||  c == '+');
+	return (c == '-' || c == '+');
 }
 
 static int	pre_check_one_arg(char *arg)
@@ -32,9 +32,11 @@ static int	pre_check_multiple_arg(char *arg)
 	int	i;
 
 	i = 0;
+	if (!arg[i])
+		return (1);
 	while (arg[i])
 	{
-		if (!arg[i] || (!is_sign(arg[i]) && !is_digit(arg[i])))
+		if (!is_sign(arg[i]) && !is_digit(arg[i]))
 			return (1);
 		if (is_sign(arg[i]))
 			if (!arg[i + 1] || !is_digit(arg[i + 1]))
@@ -47,10 +49,10 @@ static int	pre_check_multiple_arg(char *arg)
 	return (0);
 }
 
-int check_arguments_requirements(int nb_of_arg, char **arg)
+int	check_arguments_requirements(int nb_of_arg, char **arg)
 {
 	int	i;
-	int error;
+	int	error;
 
 	i = nb_of_arg;
 	if (nb_of_arg == 2)

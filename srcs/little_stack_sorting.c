@@ -1,28 +1,30 @@
 #include "../includes/push_swap.h"
 
-void	stack_of_three_sorting(t_stack *sa)
+static void	stack_of_three_sorting(t_stack *sa)
 {
 	int	t;
 
 	t = sa->top;
 	while (sa->stack[t] > sa->stack[t + 1]
-			|| sa->stack[t + 1] > sa->stack[t + 2])
+		|| sa->stack[t + 1] > sa->stack[t + 2])
 	{
-		if (sa->stack[t] < sa->stack[t + 1] &&
-		sa->stack[t + 1] > sa->stack[t + 2] && sa->stack[t] > sa->stack[t + 2])
+		if (sa->stack[t] < sa->stack[t + 1]
+			&& sa->stack[t + 1] > sa->stack[t + 2]
+			&& sa->stack[t] > sa->stack[t + 2])
 			reverse_rotate(sa, 'a');
-		else if (sa->stack[t] > sa->stack[t + 1] &&
-		sa->stack[t + 1] < sa->stack[t + 2] && sa->stack[t] > sa->stack[t + 2])
+		else if (sa->stack[t] > sa->stack[t + 1]
+			&& sa->stack[t + 1] < sa->stack[t + 2]
+			&& sa->stack[t] > sa->stack[t + 2])
 			rotate(sa, 'a');
 		else
 			swap_stacks(sa->stack, sa->top, 'a');
 	}
 }
 
-static int find_list_min_value_index(t_stack *stack)
+static int	find_list_min_value_index(t_stack *stack)
 {
-	int list_min;
-	int min_value_index;
+	int	list_min;
+	int	min_value_index;
 	int	i;
 
 	list_min = stack->stack[stack->top];
@@ -35,12 +37,12 @@ static int find_list_min_value_index(t_stack *stack)
 			list_min = stack->stack[i];
 			min_value_index = i - stack->top;
 		}
- 		i++;
+		i++;
 	}
 	return (min_value_index);
 }
 
-static void sort_stack_of_four_and_five(t_stack *sa, t_stack *sb)
+static void	sort_stack_of_four_and_five(t_stack *sa, t_stack *sb)
 {
 	int	min_value_index;
 	int	i;
@@ -78,6 +80,4 @@ void	little_stack_sorting(t_stack *sa, t_stack *sb)
 		stack_of_three_sorting(sa);
 	else if (sa->size > 3)
 		sort_stack_of_four_and_five(sa, sb);
-	else
-		;
 }

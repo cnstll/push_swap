@@ -7,7 +7,7 @@ static int	check_if_bit_is_one(int num, int bit_position)
 
 static int	most_significative_bit(int max_num)
 {
-	int most_significative_bit_position;
+	int	most_significative_bit_position;
 	int	i;
 
 	most_significative_bit_position = 0;
@@ -35,7 +35,7 @@ static int	stack_is_ordered(t_stack *stack_a, int bit_pos, int rotation_nb)
 	return (1);
 }
 
-static void operate_stacks(t_stack *stack_a, t_stack *stack_b, int bit_to_sort)
+static void	operate_stacks(t_stack *stack_a, t_stack *stack_b, int bit_to_sort)
 {
 	int	i;
 	int	check;
@@ -60,7 +60,7 @@ static void operate_stacks(t_stack *stack_a, t_stack *stack_b, int bit_to_sort)
 
 void	binary_radix_sort(t_stack *stack_a, t_stack *stack_b)
 {
-	int j;
+	int	j;
 	int	nb_of_bits_to_sort;
 
 	j = 0;

@@ -36,7 +36,7 @@ static void	quick_sort(int	*arr, int start, int end)
 
 static void	copy_array(int *src_arr, int *dest_arr, int arr_size)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < arr_size)

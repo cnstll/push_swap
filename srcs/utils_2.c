@@ -1,14 +1,8 @@
 #include "../includes/push_swap.h"
 
-int	print_and_return_error(void)
-{
-	write(2, "Error\n", 6);
-	return (1);
-}
-
 void	free_2d_string(char **s)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s[i])
@@ -48,6 +42,17 @@ static char	*ft_strdup_till_char(char *s, char c, int start)
 	return (dup);
 }
 
+static int	verify_not_only_sep(char *str, int current_index, char sep)
+{
+	while (str[current_index])
+	{
+		if (str[current_index] != sep)
+			return (1);
+		current_index++;
+	}
+	return (0);
+}
+
 char	**lite_split(char *s, char c)
 {
 	char	**ret;
@@ -55,24 +60,24 @@ char	**lite_split(char *s, char c)
 	int		k;
 	int		nb_of_separator;
 
-	j = 0;
+	j = -1;
 	nb_of_separator = 0;
-	while (s && s[j])
-		if (s[j++] == c && s[j] != c)
+	while (s && s[++j])
+		if (s[j] != c && s[j + 1] == c && verify_not_only_sep(s, j + 1, c))
 			nb_of_separator++;
 	j = 0;
 	k = 0;
-	if (!(ret = (char **)malloc(sizeof(char *) * (nb_of_separator + 2))))
-		return (NULL);
-	while (j <= nb_of_separator)
+	ret = (char **)malloc(sizeof(char *) * (nb_of_separator + 2));
+	while (ret && j <= nb_of_separator)
 	{
+		while (s[k] == c)
+			k++;
 		ret[j] = ft_strdup_till_char(s, c, k);
 		while (s[k] && s[k] != c)
 			k++;
-		while (s[k] == c)
-			k++;
 		j++;
 	}
-	ret[j] = 0;
+	if (ret)
+		ret[j] = 0;
 	return (ret);
 }

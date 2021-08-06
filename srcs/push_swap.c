@@ -1,25 +1,43 @@
 #include "../includes/push_swap.h"
 
+static int	verify_split_args(char **split_arg)
+{
+	int	i;
+	int	error;
+
+	error = 0;
+	i = 0;
+	while (split_arg[i] && error == 0)
+	{
+		if (!has_digit(split_arg[i]))
+			return (0);
+		ft_atol(split_arg[i++], &error);
+	}
+	if (error != 0)
+		return (0);
+	return (1);
+}
+
 static int	*create_list_from_one_arg(char **arg_list, int *list_size)
 {
 	int		*new_list;
 	int		i;
-	char	**separated_arg;
+	char	**split_arg;
 	int		error;
 
-	i = -1;
 	error = 0;
-	separated_arg = lite_split(arg_list[1], ' ');
-	while (separated_arg[++i])
-		ft_atol(separated_arg[i], &error);
-	if (error < 0)
+	split_arg = lite_split(arg_list[1], ' ');
+	if (!verify_split_args(split_arg))
+	{
+		free_2d_string(split_arg);
 		return (NULL);
-	*list_size = number_of_substrings(separated_arg);
+	}
+	*list_size = number_of_substrings(split_arg);
 	new_list = (int *)malloc(sizeof(int) * *list_size);
 	i = -1;
-	while (new_list && separated_arg[++i])
-		new_list[i] = ft_atol(separated_arg[i], &error);
-	free_2d_string(separated_arg);
+	while (new_list && split_arg[++i])
+		new_list[i] = ft_atol(split_arg[i], &error);
+	free_2d_string(split_arg);
 	return (new_list);
 }
 
@@ -50,26 +68,6 @@ static int	*create_list(int num_of_arg, char **arg_list, int *list_size)
 	return (new_list);
 }
 
-static int	check_duplicates_in_list(int *list, int list_size)
-{
-	int	i;
-	int	k;
-
-	i = 0;
-	while (i < list_size)
-	{
-		k = i + 1;
-		while (k < list_size)
-		{
-			if (list[i] == list[k])
-				return (1);
-			k++;
-		}
-		i++;
-	}
-	return (0);
-}
-
 static void	sort_list(int *list, int list_size)
 {
 	t_stack	stack_a;
@@ -95,31 +93,26 @@ static void	sort_list(int *list, int list_size)
 	free(stack_b.stack);
 }
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
-	int *list;
-	int list_size;
+	int	*list;
+	int	list_size;
 
-	if (argc == 1)
-		return (print_and_return_error());
-	else
+	if (argc > 1 && !check_arguments_requirements(argc, argv))
 	{
-		if (check_arguments_requirements(argc, argv) == 1)
+		list_size = 0;
+		list = create_list (argc, argv, &list_size);
+		if (list == NULL)
 			return (print_and_return_error());
-		else
+		if (check_duplicates(list, list_size))
 		{
-			list_size = 0;
-			list = create_list (argc, argv, &list_size);
-			if (list == NULL)
-				return (print_and_return_error());
-			if (check_duplicates_in_list(list, list_size))
-			{
-				free(list);
-				return (print_and_return_error());
-			}
-			sort_list(list, list_size);
 			free(list);
-			return (0);
+			return (print_and_return_error());
 		}
+		if (!is_sorted(list, list_size))
+			sort_list(list, list_size);
+		free(list);
+		return (0);
 	}
+	return (print_and_return_error());
 }

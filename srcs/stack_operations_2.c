@@ -2,12 +2,12 @@
 
 void	reverse_rotate(t_stack *stack, char stack_name)
 {
-	int tmp;
+	int	tmp;
 	int	i;
 
 	tmp = stack->stack[stack->size - 1];
 	i = stack->size - 1;
-	while(i > stack->top)
+	while (i > stack->top)
 	{
 		stack->stack[i] = stack->stack[i - 1];
 		i--;
