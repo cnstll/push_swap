@@ -64,7 +64,7 @@ void	binary_radix_sort(t_stack *stack_a, t_stack *stack_b)
 	int	nb_of_bits_to_sort;
 
 	j = 0;
-	nb_of_bits_to_sort = most_significative_bit(stack_a->size);
+	nb_of_bits_to_sort = most_significative_bit(stack_a->size - 1);
 	while (j <= nb_of_bits_to_sort)
 	{
 		operate_stacks(stack_a, stack_b, j);
