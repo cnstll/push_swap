@@ -35,12 +35,13 @@ Sorting algorithm can be classified using different criteria:
 * Stability, the relative order of appearance of records are maintained whenever they have equal keys. Stable algorithms are used whenever you have a primary key and a secondary key. When sorting integers or if each element is different, stability is not an issue (merge sort is stable while quicksort isn't)
 *  Comparison based or not
 * General method used to sort the elements: insertion, exchange, selection, merging, partitioning. etc.
+  
 ### Sorting algorithms, different methods
 
-* Quicksort: quicksort is a divide and conquer algorithm which partition the list using a pivot (first, last number or median) and put the lowest elements on the left of the pivot, the highest elements on the right of the pivot. In most cases, time complexity is O(n logn) though if the pivot is chosen as the first/last element, time complexity can be O(n^2) when the list is already ordered. Space complexity is O(log n) in avg., O(n) in worst case.
+* Quicksort: quicksort is a divide and conquer algorithm which partition the list using a pivot (first, last number or median) and put the lowest elements on the left of the pivot, the highest elements on the right of the pivot. In most cases, time complexity is O(n logn) though if the pivot is chosen as the first/last element, time complexity can be O(n^2) when the list is already ordered. Space complexity is O(log n) in avg., O(n) in worst case.  
 ![](260px-Sorting_quicksort_anim.gif)
-* Merge sort: merge sort is a stable, merging, comparison based, divide and conquer algorithm. The general idea is to divide the list in n sublists of 1 element and then reassemble sublists by comparing and ordering elements creating sorted lists, until there is only one list.
+* Merge sort: merge sort is a stable, merging, comparison based, divide and conquer algorithm. The general idea is to divide the list in n sublists of 1 element and then reassemble sublists by comparing and ordering elements creating sorted lists, until there is only one list.  
 ![](220px-Merge-sort-example-300px.gif)
-* Bubble sort: an exchanging, comparison-sort algorithm that sorts lists by repeatedly comparing and swaping adjacent numbers.
+* Bubble sort: an exchanging, comparison-sort algorithm that sorts lists by repeatedly comparing and swaping adjacent numbers.  
 ![](Bubble-sort-example-300px.gif)
 * Radix sort: radix-sort is a a non-comparative sorting algorithm. It distributes elements into bucket according to their radix. For each digit, the elements are repeatedly distributed in the corresponding radix bucket while the ordering of the prior step is preserved. Time complexity in worst-case is O(w.n) with n being the number of keys to sort and w being the key length.
