@@ -98,6 +98,8 @@ int	main(int argc, char *argv[])
 	int	*list;
 	int	list_size;
 
+	if (argc == 1)
+		return (0);
 	if (argc > 1 && !check_arguments_requirements(argc, argv))
 	{
 		list_size = 0;

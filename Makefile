@@ -14,11 +14,17 @@ SRCS = srcs/push_swap.c \
 
 OBJS = $(SRCS:.c=.o)
 
-CC = clang-9
+UNAME_S := $(shell uname -s)
+   ifeq ($(UNAME_S),Linux)
+        CC=clang-9
+    endif
+    ifeq ($(UNAME_S),Darwin)
+        CC=clang
+    endif
 
 CFLAGS = -Wall -Wextra -Werror
 
-GFLAG = -g3
+GFLAG = -g3 -fsanitize=address
 
 INCLUDES= -I includes/
 

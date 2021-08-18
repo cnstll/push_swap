@@ -3,7 +3,6 @@
 # include <limits.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include "../testing/tester.h"
 # define INT_SIZE 32
 # define LIST_SIZE 100
 
